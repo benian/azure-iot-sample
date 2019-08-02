@@ -14,7 +14,7 @@
 //
 // Using the Azure CLI:
 // az iot hub show-connection-string --hub-name {YourIoTHubName} --output table
-var connectionString = 'HostName=thingspro-serverFarm.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=i3nY0w7I1rVwpEp/YELyB9Gg8E62FucLV82j7F4Zq/s=';
+var connectionString = 'HostName=thingspro-IoTHub-newTwin.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=/2LO5sUFm0BZqEiKLW6i8q4696k2FWJVH++U3IthJMs=';
 
 // Using the Node.js SDK for Azure Event hubs:
 //   https://github.com/Azure/azure-event-hubs-node
@@ -33,13 +33,13 @@ var printError = function (err) {
 var printMessage = function (message) {
   
 var device = message.annotations["iothub-connection-device-id"]
-//  if (device == "AkiraDevice"){
+  if (device == "AkiraEdge"){
 	  
  console.log('Telemetry received: ');
   var output = JSON.stringify(message.body.deviceName) + JSON.stringify(message.body.timestamp); 
   console.log (output);
   console.log(JSON.stringify(message.body));
-//  }
+  
   console.log('Application properties (set by device): ')
   console.log(JSON.stringify(message.applicationProperties));
   console.log('System properties (set by IoT Hub): ')
@@ -47,6 +47,7 @@ var device = message.annotations["iothub-connection-device-id"]
   var device = message.annotations["iothub-connection-device-id"]
   console.log(device)
   console.log('');
+  }
 };
 
 // Connect to the partitions on the IoT Hub's Event Hubs-compatible endpoint.
